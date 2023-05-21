@@ -1,0 +1,91 @@
+﻿<Window x:Class="AppointmentScheduler_MarcinJunka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppointmentScheduler_MarcinJunka"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Label FontWeight="Bold" FontSize="19">Patient Creator</Label>
+            <StackPanel Orientation="Horizontal">
+                <Label>Name:</Label>
+                <TextBox x:Name="txtName" Height="30" Width="150" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Email:</Label>
+                <TextBox x:Name="txtEmail" Height="30" Width="150" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Phone:</Label>
+                <TextBox x:Name="txtPhone" Height="30" Width="150" Margin="5"></TextBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Handicapped Person:</Label>
+                <CheckBox x:Name="checkInvalid" Height="30" Width="150" Margin="5"></CheckBox>
+            </StackPanel>
+            <Button x:Name="btnCreatePatient" Margin="5" Click="btnCreatePatient_Click"> Create Patient</Button>
+            <Button x:Name="btnLoadPatientsList" Margin="5" Click="btnLoadPatientsList_Click">Load Patients List</Button>
+            
+            <ScrollViewer Margin="5">
+            <ListView x:Name="lstCreatedPatientsList" Height="100" SelectionChanged="lstCreatedPatientsList_SelectionChanged"></ListView>
+            </ScrollViewer>
+            <Button Margin="5" x:Name="btnSavePatientsList" Click="btnSavePatientsList_Click">Save Patients List</Button>
+
+            <GroupBox Header="You have chosen:" Margin="5" BorderBrush="Black">
+                <StackPanel Orientation="Vertical">
+                    <Label HorizontalAlignment="Center">Chosen Patient:</Label>
+                    <TextBox BorderBrush="Black" Focusable="False" Background="LightGray" x:Name="txtChosenPatient" Height="30" Width="150" Margin="5"></TextBox>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Background="Azure" >
+            <StackPanel Orientation="Horizontal">
+                <Label>Appointment Date:</Label>
+                <DatePicker x:Name="datePicker" Height="30" Width="150" Margin="5" SelectedDateChanged="DatePicker_SelectedDateChanged"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Type of service:</Label>
+                <ComboBox x:Name="comboService" Height="30" Width="150" Margin="5"></ComboBox>
+            </StackPanel>
+            
+            <Label FontWeight="Bold" FontSize="18" HorizontalAlignment="Center">Available Times (Pick one button):</Label>
+             <GroupBox Header="Available Times" x:Name="grpButtons" BorderBrush="Black" Padding="5" Margin="5">
+                 <StackPanel x:Name="btnContainer">
+                    <Button Margin="1" Background="LightGreen">8:00</Button>
+                    <Button Margin="1" Background="LightGreen">9:00</Button>
+                    <Button Margin="1" Background="LightGreen">10:00</Button>
+                    <Button Margin="1" Background="LightGreen">11:00</Button>
+                    <Button Margin="1" Background="LightGreen">12:00</Button>
+                    <Button Margin="1" Background="LightGreen">13:00</Button>
+                    <Button Margin="1" Background="LightGreen">14:00</Button>
+                    <Button Margin="1" Background="LightGreen">15:00</Button>
+                    <Button Margin="1" Background="LightGreen">16:00</Button>
+
+                    <TextBlock FontStyle="Italic" TextWrapping="Wrap">Red means that time has been allready picked and is not available.</TextBlock>
+                 </StackPanel>
+             </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <Label FontWeight="Bold">Chosen patient appointments:</Label>
+            <ListView x:Name="lstChosenPatientAppointments" Margin="5" Height="200"></ListView>
+            
+            <Label FontWeight="Bold">All Patients appointments:</Label>
+            <ListView x:Name="lstAllPatientsAppointments" Margin="5" Height="200"></ListView>
+            <Button x:Name="btnGetPatientDetails" Height="20" Margin="5" Click="btnGetPatientDetails_Click">Get Patient Details</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
